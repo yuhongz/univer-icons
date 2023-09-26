@@ -16,12 +16,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: generate
+      - name: preinstall
         run: yarn
+      - name: generate
         run: yarn go
 
-      - name: build
+      - name: install
         run: yarn
+        working-directory: ./packages/react
+      - name: build
         run: yarn build
         working-directory: ./packages/react
 
