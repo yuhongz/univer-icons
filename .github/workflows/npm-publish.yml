@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - main
-    path: './packages/react/package.json'
+    paths: './packages/react/package.json'
 
 jobs:
   build:
