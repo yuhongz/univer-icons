@@ -1,6 +1,6 @@
 {
-  "name": "univer-icons",
-  "version": "0.0.2",
+  "name": "@univerjs/icons",
+  "version": "0.0.1",
   "description": "React icons used by Univer.",
   "license": "MIT",
   "files": [
