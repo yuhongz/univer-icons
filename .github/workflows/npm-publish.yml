@@ -16,11 +16,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: yarn
-      - run: yarn go
-      - run: cd packages/react
-      - run: yarn
-      - run: yarn build
+      - name: generate
+        run: yarn
+        run: yarn go
+
+      - name: build
+        run: yarn
+        run: yarn build
+        working-directory: ./packages/react
 
   publish-npm:
     needs: build
