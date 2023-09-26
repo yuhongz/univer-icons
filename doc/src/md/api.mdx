@@ -53,6 +53,15 @@ function App() {
 
 对于一些复杂情况，比如调整图标局部的颜色，我们增加了一个颜色通道作为组件的参数，与单色图标类似，这需要与设计师提前沟通好是控制局部的哪些部分：
 
+```tsx
+function App() {
+    return 
+    <>
+        <BinaryColorExample24 style={{ fontSize: '48px' }} extend={{ colorChannel1: 'red'}}/>
+        <BinaryColorExample24 style={{ fontSize: '48px' }} extend={{ colorChannel1: 'blue'}}/>
+    </>
+}
+```
 <p align="center">
     <BinaryColorExample24 style={{ fontSize: '48px' }} extend={{ colorChannel1: 'red'}}/>{' '}
     <BinaryColorExample24 style={{ fontSize: '48px' }} extend={{ colorChannel1: 'blue'}}/>{' '}
