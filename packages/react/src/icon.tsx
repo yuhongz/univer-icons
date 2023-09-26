@@ -19,8 +19,12 @@ export interface IconProps {
 export interface IconFulfilledProps extends IconProps {
   icon: IconElement;
   id: string;
+  extend?: IExtendProps;
 }
 
+export interface IExtendProps {
+  colorChannel1: string;
+}
 export interface Attrs {
   [key: string]: any;
 }
@@ -45,7 +49,7 @@ interface RuntimeProps {
 
 export const IconBase = forwardRef(
   (props: IconFulfilledProps, ref: Ref<SVGElement>) => {
-    const { icon, id, className, ...restProps } = props;
+    const { icon, id, className, extend, ...restProps } = props;
     const cls = `univerjs-icon univerjs-icon-${id} ${className || ''}`.trim();
 
     const idSuffix = useRef<string>(`_${generateShortUuid()}`);
@@ -58,7 +62,8 @@ export const IconBase = forwardRef(
         ref,
         className: cls,
         ...restProps,
-      }
+      },
+      extend
     );
   }
 ) as CompoundedComponent;
@@ -70,35 +75,48 @@ function render(
   node: IconElement,
   id: string,
   runtimeProps: RuntimeProps,
-  rootProps?: { [key: string]: any }
+  rootProps?: { [key: string]: any },
+  extend?: IExtendProps
 ): ReactElement {
   return createElement(
     node.tag,
     {
       key: id,
-      ...replaceRuntimeIdsInAttrs(node, runtimeProps),
+      ...replaceRuntimeIdsAndExtInAttrs(node, runtimeProps, extend),
       ...rootProps,
     },
     (replaceRuntimeIdsInDefs(node, runtimeProps).children || []).map(
       (child, index) =>
-        render(child, `${id}-${node.tag}-${index}`, runtimeProps)
+        render(
+          child,
+          `${id}-${node.tag}-${index}`,
+          runtimeProps,
+          undefined,
+          extend
+        )
     )
   );
 }
 
 // Adds id-suffix to references, returns new attrs.
-function replaceRuntimeIdsInAttrs(
+function replaceRuntimeIdsAndExtInAttrs(
   node: IconElement,
-  runtimeProps: RuntimeProps
+  runtimeProps: RuntimeProps,
+  extend?: IExtendProps
 ): Attrs {
+  // replace extend colorChannel
+  let attrs = { ...node.attrs };
+  if (extend?.colorChannel1 && attrs['fill'] === 'colorChannel1') {
+    attrs['fill'] = extend.colorChannel1;
+  }
+
   // If `defIds` is empty, do nothing
   const { defIds } = runtimeProps;
   if (!defIds || defIds.length === 0) {
-    return node.attrs;
+    return attrs;
   }
 
   // Adds suffix to references
-  const attrs = { ...node.attrs };
   if (node.tag === 'use' && attrs['xlink:href']) {
     attrs['xlink:href'] = attrs['xlink:href'] + runtimeProps.idSuffix;
   }

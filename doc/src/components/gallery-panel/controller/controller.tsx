@@ -14,7 +14,7 @@ export function Controller(props: IController) {
     <div className="controlPanel">
       <div className="controlContent">
         <div className="titleWrapper">
-          <div className="title">单色图标预览</div>
+          <div className="title">尺寸</div>
         </div>
         <div className="sliderWrapper">
           <Slider
@@ -24,6 +24,9 @@ export function Controller(props: IController) {
             min={12}
             max={48}
           />
+        </div>
+        <div className="titleWrapper">
+          <div className="title">单色/双色图标颜色</div>
         </div>
         <ColorPicker
           className={'colorPicker'}

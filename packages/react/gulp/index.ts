@@ -7,7 +7,11 @@ import { clearDir } from '../../../gulp/utils';
 
 import { reactGetIconFileContent } from './react-use-template';
 
-export function reactTask(singleColorIconDirs, otherIconDirs) {
+export function reactTask(
+  singleColorIconDirs,
+  customizedIconDirs,
+  otherIconDirs
+) {
   return series(
     clearDir([
       'packages/react/dist',
@@ -22,6 +26,14 @@ export function reactTask(singleColorIconDirs, otherIconDirs) {
         iconGenerator: reactGetIconFileContent,
         options: {
           replaceColor: true,
+        },
+      }),
+      generateIcons({
+        from: [...customizedIconDirs],
+        to: 'packages/react/src/components',
+        iconGenerator: reactGetIconFileContent,
+        options: {
+          customizedColor: true,
         },
       }),
 

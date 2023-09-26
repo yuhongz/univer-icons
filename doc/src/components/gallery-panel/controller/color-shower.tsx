@@ -14,7 +14,6 @@ export default class ColorShower extends React.Component<IColorPicker> {
   };
 
   private handleChoose = (e: any) => {
-    debugger;
     e?.nativeEvent.stopImmediatePropagation();
   };
   componentDidMount() {

@@ -1,6 +1,6 @@
 import * as allManifest from '@univerjs/icons/esm/manifest';
 const excludeList = ['outdate'];
-export const APP_LIST = ['single', 'other'];
+export const APP_LIST = ['single', 'binary', 'other'];
 export const APP_GROUP = APP_LIST.map((name) => ({
   appName: name,
   groups: Object.keys(allManifest)

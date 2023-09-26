@@ -8,6 +8,7 @@ let nameMap: IMap = {
   // some translation or alias
   single: '单色图标',
   other: '其他图标',
+  binary: '双色图标',
 };
 
 let infosMap: IMap = {};

@@ -1,4 +1,4 @@
-import { SingleColorExample24, NonSingleColorExample16 } from '@univerjs/icons';
+import { SingleColorExample24, NonSingleColorExample16, BinaryColorExample24 } from '@univerjs/icons';
 
 # API
 
@@ -43,14 +43,20 @@ function App() {
 相比于给图标增加各种奇奇怪怪的 props，我们更愿意遵守 web 已有的行为，这样能够利用人们熟知且已经实践检验过的方案
 
 -   所有的图标的高度和宽度均为 1em，这样你就能通过调整 fontSize 来调整图标的大小
--   所有的单色图标均可以通过 color 来调整图标颜色
+-   所有的单色图标均可以通过 color 来调整整体图标颜色
 
-例外：我们也提供了一些彩色图标，这些图标不能通过 color 来调整颜色。
+此外：我们也提供了一些多色图标，这些图标的颜色是固定的：
 
 <p align="center">
     <NonSingleColorExample16 style={{ fontSize: '48px' }} />{' '}
 </p>
 
+对于一些复杂情况，比如调整图标局部的颜色，我们增加了一个颜色通道作为组件的参数，与单色图标类似，这需要与设计师提前沟通好是控制局部的哪些部分：
+
+<p align="center">
+    <BinaryColorExample24 style={{ fontSize: '48px' }} extend={{ colorChannel1: 'red'}}/>{' '}
+    <BinaryColorExample24 style={{ fontSize: '48px' }} extend={{ colorChannel1: 'blue'}}/>{' '}
+</p>
 
 ### icon 源文件
 

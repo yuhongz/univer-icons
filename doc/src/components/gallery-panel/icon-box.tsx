@@ -51,7 +51,7 @@ export function IconBox(props: IIconBox) {
     >
       <div className="iconContainer">
         <div className="iconSource">
-          <Icon style={style} />
+          <Icon style={style} extend={{ colorChannel1: props.color || '#E5E5E5' }} />
         </div>
       </div>
       {isHover ? (

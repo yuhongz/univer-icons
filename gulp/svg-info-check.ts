@@ -26,6 +26,7 @@ export interface IconElement {
 
 export interface NormalizationOptions {
   replaceColor?: boolean;
+  customizedColor?: boolean;
 }
 
 interface NormalizationContext {
@@ -173,19 +174,31 @@ function normalizeClassName(node: IconElement) {
 
 /**
  * for single colored icons, we assume that #000 is placeholder for 'currentColor'
+ * for multi colored icons, we assume that #E5E5E5 is placeholder for 'colorChannel1'
  */
 function normalizeColor(node: IconElement, options: NormalizationOptions) {
-  if (!options.replaceColor) {
-    return;
-  }
 
   const { attrs } = node;
 
-  if (attrs.fill === '#000') {
-    attrs.fill = 'currentColor';
+  if (options.replaceColor) {
+    if (attrs.fill === '#000') {
+      attrs.fill = 'currentColor';
+    }
+  
+    if (attrs.stroke === '#000') {
+      attrs.stroke = 'currentColor';
+    }
   }
 
-  if (attrs.stroke === '#000') {
-    attrs.stroke = 'currentColor';
+  if (options.customizedColor) {
+    if (attrs.fill === '#E5E5E5') {
+      attrs.fill = 'colorChannel1';
+    }
+  
+    if (attrs.stroke === '#E5E5E5') {
+      attrs.stroke = 'colorChannel1';
+    }
   }
+
+
 }
