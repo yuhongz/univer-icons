@@ -15,6 +15,7 @@ export default class GalleryPanel extends React.Component {
     filteredAppGroups: any[];
     size: number;
     color: string | null;
+    secondColor: string | null;
   };
 
   private search: RefObject<React.Component>;
@@ -25,6 +26,7 @@ export default class GalleryPanel extends React.Component {
       filteredAppGroups: this.filterGroupsByName(''),
       size: 24,
       color: null,
+      secondColor: null,
     };
     this.search = React.createRef();
   }
@@ -70,6 +72,11 @@ export default class GalleryPanel extends React.Component {
       color: value,
     });
   }
+  private handleSecondColorChange(value: string) {
+    this.setState({
+      secondColor: value,
+    });
+  }
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeydown.bind(this));
   }
@@ -77,7 +84,7 @@ export default class GalleryPanel extends React.Component {
   handleKeydown(e: KeyboardEvent) {}
 
   render() {
-    const { filteredAppGroups, size, color } = this.state;
+    const { filteredAppGroups, size, color, secondColor } = this.state;
     return (
       <div>
         <div className="siderbar-menu">
@@ -123,6 +130,7 @@ export default class GalleryPanel extends React.Component {
                               nameCn={translate(stem)}
                               size={size}
                               color={color}
+                              secondColor={secondColor}
                             />
                           );
                         }
@@ -138,6 +146,7 @@ export default class GalleryPanel extends React.Component {
         <Controller
           handleSizeChange={this.handleSizeChange.bind(this)}
           handleColorChange={this.handleColorChange.bind(this)}
+          handleSecondColorChange={this.handleSecondColorChange.bind(this)}
         />
         <input id="fakeForCopy"></input>
       </div>

@@ -6,10 +6,12 @@ import ColorPicker from './color-picker';
 interface IController {
   handleSizeChange: (value: number) => void;
   handleColorChange: (value: string) => void;
+  handleSecondColorChange: (value: string) => void;
 }
 export function Controller(props: IController) {
   const handleSizeChange = debounce(props.handleSizeChange, 500);
   const handleColorChange = debounce(props.handleColorChange, 500);
+  const handleSecondColorChange = debounce(props.handleSecondColorChange, 500);
   return (
     <div className="controlPanel">
       <div className="controlContent">
@@ -26,11 +28,18 @@ export function Controller(props: IController) {
           />
         </div>
         <div className="titleWrapper">
-          <div className="title">单色/双色图标颜色</div>
+          <div className="title">单色图标颜色</div>
         </div>
         <ColorPicker
           className={'colorPicker'}
           handleColorChange={handleColorChange}
+        />
+        <div className="titleWrapper">
+          <div className="title">双色图标颜色（额外颜色通道）</div>
+        </div>
+        <ColorPicker
+          className={'colorPicker'}
+          handleColorChange={handleSecondColorChange}
         />
       </div>
     </div>

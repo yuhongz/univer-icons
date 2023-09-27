@@ -47,7 +47,8 @@ export default class ColorShower extends React.Component<IColorPicker> {
         <div
           style={{
             position: 'absolute',
-            top: '0px',
+            top: '-30px',
+            right: '30px',
             display: `${visible ? '' : 'none'}`,
           }}
           onClick={this.handleChoose}

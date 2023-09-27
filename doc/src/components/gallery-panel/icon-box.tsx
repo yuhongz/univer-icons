@@ -9,6 +9,7 @@ interface IIconBox {
   copyName?: string;
   size?: number;
   color?: string | null;
+  secondColor?: string | null;
 }
 export function IconBox(props: IIconBox) {
   const Icon = props.icon;
@@ -51,7 +52,10 @@ export function IconBox(props: IIconBox) {
     >
       <div className="iconContainer">
         <div className="iconSource">
-          <Icon style={style} extend={{ colorChannel1: props.color || '#E5E5E5' }} />
+          <Icon
+            style={style}
+            extend={{ colorChannel1: props.secondColor || '#E5E5E5' }}
+          />
         </div>
       </div>
       {isHover ? (

@@ -33,6 +33,7 @@ export function reactTask(
         to: 'packages/react/src/components',
         iconGenerator: reactGetIconFileContent,
         options: {
+          replaceColor: true,
           customizedColor: true,
         },
       }),
