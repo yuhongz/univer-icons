@@ -34,13 +34,23 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - name: clean
+        run: |
+          yarn clean
+          rm -rf node_modules
+        working-directory: ./packages/react
       - name: install
         run: yarn
+        working-directory: ./packages/react
+      - name: List Files1
+        run: |
+          pwd
+          ls -la
         working-directory: ./packages/react
       - name: build
         run: yarn build
         working-directory: ./packages/react
-      - name: List Files
+      - name: List Files2
         run: |
           pwd
           ls -la
