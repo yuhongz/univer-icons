@@ -40,7 +40,7 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - name: List Files
-      - run: |
+        run: |
           pwd
           ls -la
         working-directory: ./packages/react
