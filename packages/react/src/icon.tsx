@@ -12,6 +12,7 @@ export interface IconProps {
   focusable?: string;
   style?: React.CSSProperties;
   className?: string;
+  extend?: IExtendProps;
 
   onClick?: React.MouseEventHandler<SVGSVGElement>;
 }
@@ -19,7 +20,6 @@ export interface IconProps {
 export interface IconFulfilledProps extends IconProps {
   icon: IconElement;
   id: string;
-  extend?: IExtendProps;
 }
 
 export interface IExtendProps {
