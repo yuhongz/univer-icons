@@ -19,16 +19,11 @@ jobs:
         with:
           node-version: 16
       - name: preinstall
-        run: |
-          yarn
-          yarn go
-
-      - name: install
         run: yarn
-        working-directory: ./packages/react
-      - name: build
-        run: yarn build
-        working-directory: ./packages/react
+      - name: generate
+        run: yarn go
+
+
 
   publish-npm:
     needs: build
@@ -39,6 +34,12 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - name: install
+        run: yarn
+        working-directory: ./packages/react
+      - name: build
+        run: yarn build
+        working-directory: ./packages/react
       - name: List Files
         run: |
           pwd
