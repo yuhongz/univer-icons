@@ -16,7 +16,7 @@ export function Controller(props: IController) {
     <div className="controlPanel">
       <div className="controlContent">
         <div className="titleWrapper">
-          <div className="title">尺寸</div>
+          <div className="title">尺寸: style.fontSize</div>
         </div>
         <div className="sliderWrapper">
           <Slider
@@ -28,18 +28,21 @@ export function Controller(props: IController) {
           />
         </div>
         <div className="titleWrapper">
-          <div className="title">单色图标颜色</div>
+          <div className="title">变色方式: style.color</div>
         </div>
         <ColorPicker
           className={'colorPicker'}
           handleColorChange={handleColorChange}
+          defaultColor={'000000'}
         />
         <div className="titleWrapper">
-          <div className="title">双色图标颜色（额外颜色通道）</div>
+          <div className="title">变色方式: extend.colorChannel1</div>
         </div>
         <ColorPicker
           className={'colorPicker'}
           handleColorChange={handleSecondColorChange}
+          defaultColor={'E5E5E5'}
+
         />
       </div>
     </div>
