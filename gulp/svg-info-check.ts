@@ -156,7 +156,8 @@ function normalizeStyle(node: IconElement) {
     const styles = attrs.style.split(';');
     styles.forEach((chunk) => {
       const [key, value] = chunk.split(':');
-      styleMap[key] = value;
+      const camelKey = camelCase(key);
+      styleMap[camelKey] = value;
     });
     attrs.style = styleMap;
   }
